@@ -57,7 +57,7 @@ function next(c::StratifiedKfold, s::Int)
     r = Int[]
     for (permseq, coeff) in zip(c.permseqs, c.coeffs)
         a, b = @compat(round(Integer, [s-1, s] .* coeff))
-        append!(r, view(permseq, a+1:b))
+        append!(r, Base.view(permseq, a+1:b))
     end
     setdiff(1:c.n, r), s+1
 end

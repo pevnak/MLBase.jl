@@ -38,7 +38,7 @@ function repeachcol{T}(x::DenseArray{T,2}, n::Integer)
     r = Array(T, m, k * n)
     p = 0
     @inbounds for i = 1:k
-        xi = view(x, :, i)
+        xi =Base. view(x, :, i)
         for j = 1:n
             r[:, p += 1] = xi
         end
@@ -52,7 +52,7 @@ function repeachcol{T}(x::DenseArray{T,2}, ns::IntegerVector)
     r = zeros(T, m, sum(ns))
     p = 0
     @inbounds for i = 1:k
-        xi = view(x, :, i)
+        xi = Base.view(x, :, i)
         ni = ns[i]
         for j = 1:ni
             r[:, p += 1] = xi

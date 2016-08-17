@@ -28,7 +28,7 @@ function counthits(gt::IntegerVector, rklst::IntegerMatrix, k::Integer)
 
     cnt = 0
     @inbounds for j = 1:n
-        rj = view(rklst, :, j)
+        rj = Base.view(rklst, :, j)
         gj = gt[j]
         for i = 1:m
             if rj[i] == gj
@@ -49,7 +49,7 @@ function counthits(gt::IntegerVector, rklst::IntegerMatrix, ks::IntegerVector)
     nk = length(ks)
     cnts = zeros(Int, nk)
     @inbounds for j = 1:n
-        rj = view(rklst, :, j)
+        rj = Base.view(rklst, :, j)
         gj = gt[j]
         for i = 1:m
             if rj[i] == gj

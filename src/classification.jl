@@ -25,7 +25,7 @@ function classify!(r::IntegerVector, x::RealMatrix, ord::Ordering)
     n = size(x, 2)
     length(r) == n || throw(DimensionMismatch("Mismatched length of r."))
     for j = 1:n
-        @inbounds r[j] = classify(view(x,:,j), ord)
+        @inbounds r[j] = classify(Base.view(x,:,j), ord)
     end
     return r
 end
@@ -58,7 +58,7 @@ function classify_withscores!(r::IntegerVector, s::RealVector, x::RealMatrix, or
     n = size(x, 2)
     length(r) == n || throw(DimensionMismatch("Mismatched length of r."))
     for j = 1:n
-        k, v = classify_withscore(view(x,:,j), ord)
+        k, v = classify_withscore(Base.view(x,:,j), ord)
         @inbounds r[j] = k
         @inbounds s[j] = v
     end
@@ -90,7 +90,7 @@ function classify!(r::IntegerVector, x::RealMatrix, t::Real, ord::Ordering)
     n = size(x, 2)
     length(r) == n || throw(DimensionMismatch("Mismatched length of r."))
     for j = 1:n
-        @inbounds r[j] = classify(view(x,:,j), t, ord)
+        @inbounds r[j] = classify(Base.view(x,:,j), t, ord)
     end
     return r
 end
